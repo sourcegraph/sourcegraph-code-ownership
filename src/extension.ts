@@ -2,6 +2,7 @@ import { combineLatest, from, Observable } from 'rxjs'
 import { startWith } from 'rxjs/operators'
 import * as sourcegraph from 'sourcegraph'
 import { getCodeOwners } from './codeownersFile'
+import { formatCodeOwners } from './codeOwners'
 
 export function activate(ctx: sourcegraph.ExtensionContext): void {
     ctx.subscriptions.add(
@@ -27,8 +28,10 @@ export function activate(ctx: sourcegraph.ExtensionContext): void {
                     console.error(`Error getting code owners for ${doc.uri}:`, err)
                 }
             }
+            const { label, description } = formatCodeOwners(owners)
             sourcegraph.internal.updateContext({
-                [`codeOwnership.file.${doc.uri}`]: owners && owners.length > 0 ? owners.join(', ') : null,
+                [`codeOwnership.file.${doc.uri}.label`]: label,
+                [`codeOwnership.file.${doc.uri}.description`]: description,
             })
         })
     )
