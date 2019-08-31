@@ -38,7 +38,8 @@
       {
         "id": "codeOwnership.file",
         "actionItem": {
-          "label": "Owner: ${get(context, `codeOwnership.file.${resource.uri}`)}"
+          "label": "${get(context, `codeOwnership.file.${resource.uri}.label`)}",
+          "description": "${get(context, `codeOwnership.file.${resource.uri}.description`)}"
         }
       }
     ],
@@ -46,7 +47,7 @@
       "editor/title": [
         {
           "action": "codeOwnership.file",
-          "when": "!config.codeOwnership.hide && get(context, `codeOwnership.file.${resource.uri}`)"
+          "when": "!config.codeOwnership.hide && get(context, `codeOwnership.file.${resource.uri}.label`)"
         }
       ],
       "commandPalette": [
