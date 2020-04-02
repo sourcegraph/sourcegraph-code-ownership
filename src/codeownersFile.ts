@@ -4,19 +4,6 @@ import gql from 'tagged-template-noop'
 import { resolveURI } from './uri'
 import { memoizeAsync } from './util/memoizeAsync'
 
-export async function getCodeOwners(uri: string): Promise<string[] | null> {
-    const codeownersFile = await getCodeownersFile({ uri, sourcegraph })
-    if (!codeownersFile) {
-        return null
-    }
-    const codeownersEntries = parseCodeownersFile(codeownersFile)
-    const entry = matchCodeownersFile(resolveURI(uri).path, codeownersEntries)
-    if (entry) {
-        return entry.owners
-    }
-    return null
-}
-
 const getCodeownersFile = memoizeAsync(
     async ({
         uri,
@@ -60,6 +47,19 @@ const getCodeownersFile = memoizeAsync(
         return `${repo}@${rev}`
     }
 )
+
+export async function getCodeOwners(uri: string): Promise<string[] | null> {
+    const codeownersFile = await getCodeownersFile({ uri, sourcegraph })
+    if (!codeownersFile) {
+        return null
+    }
+    const codeownersEntries = parseCodeownersFile(codeownersFile)
+    const entry = matchCodeownersFile(resolveURI(uri).path, codeownersEntries)
+    if (entry) {
+        return entry.owners
+    }
+    return null
+}
 
 /**
  * An individual entry from a CODEOWNERS file
