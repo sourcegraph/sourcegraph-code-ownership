@@ -9,8 +9,8 @@ jobs:
     - stage: test
       script:
         - npm run prettier-check
-        - npm run tslint
         - npm run typecheck
+        - npm run eslint
         - npm run build
         - npm run cover
         - nyc report --reporter json
