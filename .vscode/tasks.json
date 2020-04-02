@@ -6,7 +6,17 @@
     {
       "type": "npm",
       "script": "eslint",
-      "problemMatcher": ["$eslint-stylish"]
-    }
-  ]
+      "problemMatcher": ["$eslint-stylish"],
+    },
+    {
+      "type": "npm",
+      "script": "watch:typecheck",
+      "problemMatcher": ["$tsc-watch"],
+      "group": "build",
+      "isBackground": true,
+      "runOptions": {
+        "runOn": "folderOpen",
+      },
+    },
+  ],
 }
