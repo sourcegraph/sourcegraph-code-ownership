@@ -1,5 +1,7 @@
 # Code ownership extension for Sourcegraph
 
+[![Build Status](https://travis-ci.org/sourcegraph/sourcegraph-code-ownership.svg?branch=master)](https://travis-ci.org/sourcegraph/sourcegraph-code-ownership)
+
 A [Sourcegraph extension](https://docs.sourcegraph.com/extensions) that shows code owners of the current file.
 
 [**🗃️ Source code**](https://github.com/sourcegraph/sourcegraph-code-ownership)
