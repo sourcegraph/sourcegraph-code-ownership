@@ -1,4 +1,5 @@
 {
+  "$schema": "https://raw.githubusercontent.com/sourcegraph/sourcegraph/master/shared/src/schema/extension.schema.json",
   "name": "code-ownership",
   "publisher": "sourcegraph",
   "description": "See code owners of the current file",
