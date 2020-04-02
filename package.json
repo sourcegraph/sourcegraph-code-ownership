@@ -129,6 +129,7 @@
   },
   "dependencies": {
     "ignore": "^5.0.5",
-    "rxjs": "^6.4.0"
+    "rxjs": "^6.4.0",
+    "tagged-template-noop": "^2.1.1"
   }
 }

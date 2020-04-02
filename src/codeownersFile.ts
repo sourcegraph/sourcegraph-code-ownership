@@ -1,5 +1,6 @@
 import ignore from 'ignore'
 import * as sourcegraph from 'sourcegraph'
+import gql from 'tagged-template-noop'
 import { resolveURI } from './uri'
 import { memoizeAsync } from './util/memoizeAsync'
 
@@ -27,7 +28,7 @@ const getCodeownersFile = memoizeAsync(
         const { repo, rev } = resolveURI(uri)
         const { data } = await sourcegraph.commands.executeCommand(
             'queryGraphQL',
-            `
+            gql`
                 query GetCodeownersFile($repo: String!, $rev: String!) {
                     repository(name: $repo) {
                         commit(rev: $rev) {
