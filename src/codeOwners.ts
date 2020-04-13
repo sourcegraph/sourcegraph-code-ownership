@@ -1,7 +1,9 @@
 const SHOW_SINGLE_OWNER_MAX_LENGTH = 14
 
-export function formatCodeOwners(owners: string[] | null): { label: string | null; description: string | null } {
-    if (owners === null) {
+export function formatCodeOwners(
+    owners: string[] | null | undefined
+): { label: string | null; description: string | null } {
+    if (!owners) {
         return { label: null, description: null }
     }
     if (owners.length === 0) {

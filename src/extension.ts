@@ -3,6 +3,7 @@ import { startWith, switchMap, filter, map } from 'rxjs/operators'
 import * as sourcegraph from 'sourcegraph'
 import { getCodeOwners } from './codeownersFile'
 import { formatCodeOwners } from './codeOwners'
+import { resolveURI } from './uri'
 
 export function activate(ctx: sourcegraph.ExtensionContext): void {
     ctx.subscriptions.add(
@@ -22,17 +23,25 @@ export function activate(ctx: sourcegraph.ExtensionContext): void {
                 switchMap(async textDocument => {
                     if (!sourcegraph.configuration.get().value['codeOwnership.hide']) {
                         try {
-                            return { textDocument, owners: await getCodeOwners(textDocument.uri) }
+                            return { textDocument, resolvedOwnersLine: await getCodeOwners(textDocument.uri) }
                         } catch (err) {
                             console.error(`Error getting code owners for ${textDocument.uri}:`, err)
                         }
                     }
-                    return { textDocument, owners: null }
+                    return { textDocument, resolvedOwnersLine: null }
                 })
             )
-            .subscribe(({ textDocument, owners }) => {
-                const { label, description } = formatCodeOwners(owners)
+            .subscribe(({ textDocument, resolvedOwnersLine }) => {
+                const { label, description } = formatCodeOwners(resolvedOwnersLine?.owners)
+                const { repo, rev } = resolveURI(textDocument.uri)
+                const url =
+                    resolvedOwnersLine &&
+                    new URL(
+                        `${repo}@${rev}/-/blob/${resolvedOwnersLine.path}#L${resolvedOwnersLine.lineNumber}`,
+                        sourcegraph.internal.sourcegraphURL
+                    ).href
                 sourcegraph.internal.updateContext({
+                    [`codeOwnership.file.${textDocument.uri}.url`]: url,
                     [`codeOwnership.file.${textDocument.uri}.label`]: label,
                     [`codeOwnership.file.${textDocument.uri}.description`]: description,
                 })

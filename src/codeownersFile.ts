@@ -11,7 +11,7 @@ const getCodeownersFile = memoizeAsync(
     }: {
         uri: string
         sourcegraph: typeof import('sourcegraph')
-    }): Promise<string | null> => {
+    }): Promise<{ path: string; content: string } | null> => {
         const { repo, rev } = resolveURI(uri)
         const { data } = await sourcegraph.commands.executeCommand(
             'queryGraphQL',
@@ -35,10 +35,10 @@ const getCodeownersFile = memoizeAsync(
             throw new Error('repository or commit not found when getting CODEOWNERS file')
         }
         if (data.repository.commit.codeownersBlob && data.repository.commit.codeownersBlob.content) {
-            return data.repository.commit.codeownersBlob.content
+            return { path: 'CODEOWNERS', content: data.repository.commit.codeownersBlob.content }
         }
         if (data.repository.commit.githubCodeownersBlob && data.repository.commit.githubCodeownersBlob.content) {
-            return data.repository.commit.githubCodeownersBlob.content
+            return { path: '.github/CODEOWNERS', content: data.repository.commit.githubCodeownersBlob.content }
         }
         return null
     },
@@ -48,15 +48,21 @@ const getCodeownersFile = memoizeAsync(
     }
 )
 
-export async function getCodeOwners(uri: string): Promise<string[] | null> {
+export interface ResolvedOwnersLine {
+    path: string
+    lineNumber: number
+    owners: string[]
+}
+
+export async function getCodeOwners(uri: string): Promise<ResolvedOwnersLine | null> {
     const codeownersFile = await getCodeownersFile({ uri, sourcegraph })
     if (!codeownersFile) {
         return null
     }
-    const codeownersEntries = parseCodeownersFile(codeownersFile)
-    const entry = matchCodeownersFile(resolveURI(uri).path, codeownersEntries)
-    if (entry) {
-        return entry.owners
+    const codeownersEntries = parseCodeownersFile(codeownersFile.content)
+    const matching = codeownersEntries.find(entry => matchPattern(resolveURI(uri).path, entry.pattern))
+    if (matching) {
+        return { path: codeownersFile.path, lineNumber: matching.lineNumber, owners: matching.owners }
     }
     return null
 }
@@ -65,6 +71,7 @@ export async function getCodeOwners(uri: string): Promise<string[] | null> {
  * An individual entry from a CODEOWNERS file
  */
 export interface CodeOwnersEntry {
+    lineNumber: number
     pattern: string
     owners: string[]
 }
@@ -74,17 +81,17 @@ export interface CodeOwnersEntry {
  * of the file).
  */
 export function parseCodeownersFile(str: string): CodeOwnersEntry[] {
-    const entries = []
+    const entries: CodeOwnersEntry[] = []
     const lines = str.split('\n')
 
-    for (const line of lines) {
-        const [content] = line.split('#')
+    for (const [index, lineText] of lines.entries()) {
+        const [content] = lineText.split('#')
         const trimmed = content.trim()
         if (trimmed === '') {
             continue
         }
         const [pattern, ...owners] = trimmed.split(/\s+/)
-        entries.push({ pattern, owners })
+        entries.push({ pattern, owners, lineNumber: index + 1 })
     }
 
     return entries.reverse()
@@ -95,17 +102,4 @@ export function parseCodeownersFile(str: string): CodeOwnersEntry[] {
  */
 export function matchPattern(filename: string, pattern: string): boolean {
     return ignore().add(pattern).ignores(filename)
-}
-
-/**
- * Match a filename against CODEOWNERS entries to determine which (if any) it
- * matches.
- */
-export function matchCodeownersFile(filename: string, entries: CodeOwnersEntry[]): CodeOwnersEntry | null {
-    for (const entry of entries) {
-        if (matchPattern(filename, entry.pattern)) {
-            return entry
-        }
-    }
-    return null
 }
