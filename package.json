@@ -38,6 +38,10 @@
       },
       {
         "id": "codeOwnership.file",
+        "command": "open",
+        "commandArguments": [
+          "${get(context, `codeOwnership.file.${resource.uri}.url`)}"
+        ],
         "actionItem": {
           "label": "${get(context, `codeOwnership.file.${resource.uri}.label`)}",
           "description": "${get(context, `codeOwnership.file.${resource.uri}.description`)}"
