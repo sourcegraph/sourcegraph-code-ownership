@@ -94,9 +94,7 @@ export function parseCodeownersFile(str: string): CodeOwnersEntry[] {
  * Match a filename against a glob pattern (while respecting .gitignore rules)
  */
 export function matchPattern(filename: string, pattern: string): boolean {
-    return ignore()
-        .add(pattern)
-        .ignores(filename)
+    return ignore().add(pattern).ignores(filename)
 }
 
 /**
