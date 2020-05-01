@@ -130,7 +130,7 @@
     "mocha": "^7.1.1",
     "nyc": "^13.3.0",
     "parcel-bundler": "^1.11.0",
-    "prettier": "^2.0.4",
+    "prettier": "^2.0.5",
     "sinon": "^9.0.2",
     "source-map-support": "^0.5.10",
     "sourcegraph": "^24.0.0",
