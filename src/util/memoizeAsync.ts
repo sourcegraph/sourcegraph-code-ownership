@@ -10,15 +10,15 @@ export function memoizeAsync<P, T>(
     toKey: (params: P) => string
 ): (params: P) => Promise<T> {
     const cache = new Map<string, Promise<T>>()
-    return (params: P) => {
-        const key = toKey(params)
+    return (parameters: P) => {
+        const key = toKey(parameters)
         const hit = cache.get(key)
         if (hit) {
             return hit
         }
-        const p = func(params)
-        p.then(null, () => cache.delete(key))
-        cache.set(key, p)
-        return p
+        const promise = func(parameters)
+        promise.then(null, () => cache.delete(key))
+        cache.set(key, promise)
+        return promise
     }
 }

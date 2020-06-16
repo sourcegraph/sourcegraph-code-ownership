@@ -5,8 +5,8 @@ import { getCodeOwners } from './codeownersFile'
 import { formatCodeOwners } from './codeOwners'
 import { resolveURI } from './uri'
 
-export function activate(ctx: sourcegraph.ExtensionContext): void {
-    ctx.subscriptions.add(
+export function activate(context: sourcegraph.ExtensionContext): void {
+    context.subscriptions.add(
         combineLatest([
             from(sourcegraph.workspace.onDidOpenTextDocument).pipe(
                 startWith(
@@ -24,8 +24,8 @@ export function activate(ctx: sourcegraph.ExtensionContext): void {
                     if (!sourcegraph.configuration.get().value['codeOwnership.hide']) {
                         try {
                             return { textDocument, resolvedOwnersLine: await getCodeOwners(textDocument.uri) }
-                        } catch (err) {
-                            console.error(`Error getting code owners for ${textDocument.uri}:`, err)
+                        } catch (error) {
+                            console.error(`Error getting code owners for ${textDocument.uri}:`, error)
                         }
                     }
                     return { textDocument, resolvedOwnersLine: null }
