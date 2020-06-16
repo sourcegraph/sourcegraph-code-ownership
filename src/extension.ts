@@ -1,4 +1,4 @@
-import { combineLatest, from, Observable } from 'rxjs'
+import { combineLatest, from } from 'rxjs'
 import { startWith, switchMap, filter, map } from 'rxjs/operators'
 import * as sourcegraph from 'sourcegraph'
 import { getCodeOwners } from './codeownersFile'
@@ -8,14 +8,14 @@ import { resolveURI } from './uri'
 export function activate(context: sourcegraph.ExtensionContext): void {
     context.subscriptions.add(
         combineLatest([
-            from(sourcegraph.workspace.onDidOpenTextDocument).pipe(
+            from(sourcegraph.workspace.openedTextDocuments).pipe(
                 startWith(
-                    sourcegraph.app.activeWindow && sourcegraph.app.activeWindow.activeViewComponent
+                    sourcegraph.app.activeWindow?.activeViewComponent?.type === 'CodeEditor'
                         ? sourcegraph.app.activeWindow.activeViewComponent.document
                         : null
                 )
             ),
-            new Observable(subscriber => sourcegraph.configuration.subscribe(() => subscriber.next())),
+            sourcegraph.configuration,
         ])
             .pipe(
                 map(([textDocument]) => textDocument),
