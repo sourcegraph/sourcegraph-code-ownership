@@ -1,4 +1,4 @@
-import { combineLatest, from, Observable } from 'rxjs'
+import { combineLatest, from } from 'rxjs'
 import { startWith, switchMap, filter, map } from 'rxjs/operators'
 import * as sourcegraph from 'sourcegraph'
 import { getCodeOwners } from './codeownersFile'
