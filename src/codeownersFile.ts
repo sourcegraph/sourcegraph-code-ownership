@@ -31,13 +31,13 @@ const getCodeownersFile = memoizeAsync(
             `,
             { repo, rev }
         )
-        if (!data || !data.repository || !data.repository.commit) {
+        if (!data?.repository?.commit) {
             throw new Error('repository or commit not found when getting CODEOWNERS file')
         }
-        if (data.repository.commit.codeownersBlob && data.repository.commit.codeownersBlob.content) {
+        if (data.repository.commit.codeownersBlob?.content) {
             return { path: 'CODEOWNERS', content: data.repository.commit.codeownersBlob.content }
         }
-        if (data.repository.commit.githubCodeownersBlob && data.repository.commit.githubCodeownersBlob.content) {
+        if (data.repository.commit.githubCodeownersBlob?.content) {
             return { path: '.github/CODEOWNERS', content: data.repository.commit.githubCodeownersBlob.content }
         }
         return null
