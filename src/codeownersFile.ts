@@ -80,9 +80,9 @@ export interface CodeOwnersEntry {
  * Parse a CODEOWNERS file into an array of entries (will be in reverse order
  * of the file).
  */
-export function parseCodeownersFile(str: string): CodeOwnersEntry[] {
+export function parseCodeownersFile(string: string): CodeOwnersEntry[] {
     const entries: CodeOwnersEntry[] = []
-    const lines = str.split('\n')
+    const lines = string.split('\n')
 
     for (const [index, lineText] of lines.entries()) {
         const [content] = lineText.split('#')
