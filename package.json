@@ -136,7 +136,7 @@
     "source-map-support": "^0.5.10",
     "sourcegraph": "^24.7.0",
     "ts-node": "^8.0.2",
-    "typescript": "^3.9.5"
+    "typescript": "^3.9.7"
   },
   "dependencies": {
     "ignore": "^5.0.5",
