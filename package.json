@@ -10,8 +10,7 @@
     "url": "https://github.com/sourcegraph/sourcegraph-code-ownership"
   },
   "categories": [
-    "Reports and stats",
-    "Code analysis"
+    "Reports and stats"
   ],
   "tags": [
     "codeowners",
