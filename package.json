@@ -138,7 +138,7 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "ignore": "^5.0.5",
+    "ignore": "^5.1.8",
     "rxjs": "^6.5.5",
     "tagged-template-noop": "^2.1.1"
   }
