@@ -133,7 +133,7 @@
     "prettier": "^2.2.1",
     "sinon": "^9.2.2",
     "source-map-support": "^0.5.19",
-    "sourcegraph": "^24.7.0",
+    "sourcegraph": "^24.8.0",
     "ts-node": "^8.0.2",
     "typescript": "^4.1.3"
   },
