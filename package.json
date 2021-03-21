@@ -124,7 +124,7 @@
     "@types/node": "12.20.4",
     "@types/sinon": "9.0.10",
     "eslint": "^7.21.0",
-    "husky": "^4.3.6",
+    "husky": "^5.2.0",
     "lnfs-cli": "^2.1.0",
     "mkdirp": "^1.0.4",
     "mocha": "^7.2.0",
