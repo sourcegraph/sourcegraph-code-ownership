@@ -121,7 +121,7 @@
     "@sourcegraph/prettierrc": "^3.0.3",
     "@sourcegraph/tsconfig": "^4.0.1",
     "@types/mocha": "7.0.2",
-    "@types/node": "12.20.13",
+    "@types/node": "14.17.1",
     "@types/sinon": "10.0.1",
     "eslint": "^7.27.0",
     "husky": "^4.3.6",
