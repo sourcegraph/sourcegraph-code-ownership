@@ -12,11 +12,11 @@ A [Sourcegraph extension](https://docs.sourcegraph.com/extensions) that shows co
 
 Works on [Sourcegraph.com](https://sourcegraph.com), [self-hosted Sourcegraph instances](https://docs.sourcegraph.com/#quickstart), and on code hosts (via the [Sourcegraph browser extension](https://docs.sourcegraph.com/integration/browser_extension)).
 
-- **Code owner of current file** displayed in the file header
+- **Code owner of current file** displayed on hover on the extension icon.
 
 Only [`CODEOWNERS` and `.github/CODEOWNERS` files](https://help.github.com/en/articles/about-code-owners) are supported right now. [File an issue](https://github.com/sourcegraph/sourcegraph-code-ownership/issues) if you want need support for another code ownership scheme.
 
-![Screenshot](https://storage.googleapis.com/sourcegraph-assets/code-ownership-extension-0.png)
+![Screenshot](https://storage.googleapis.com/sourcegraph-assets/code-owner-screenshot-2021-06-21.png)
 
 ## Usage
 
@@ -26,7 +26,7 @@ Only [`CODEOWNERS` and `.github/CODEOWNERS` files](https://help.github.com/en/ar
    - On Sourcegraph.com, visit [https://sourcegraph.com/extensions/sourcegraph/code-ownership](https://sourcegraph.com/extensions/sourcegraph/code-ownership) to enable it.
    - On a self-hosted Sourcegraph instance, select **User menu > Extensions**, search for `sourcegraph/code-ownership`, and enable it.
 1. Visit any code file in a repository containing a `CODEOWNERS` or `.github/CODEOWNERS` file.
-1. Look in the file header to see the current file's code owner(s).
+1. Hover over the extension button in the extension pannel to view the current file's code owner(s).
 
 ### On your code host
 
