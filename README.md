@@ -16,7 +16,8 @@ Works on [Sourcegraph.com](https://sourcegraph.com), [self-hosted Sourcegraph in
 
 Only [`CODEOWNERS` and `.github/CODEOWNERS` files](https://help.github.com/en/articles/about-code-owners) are supported right now. [File an issue](https://github.com/sourcegraph/sourcegraph-code-ownership/issues) if you want need support for another code ownership scheme.
 
-![Screenshot](https://storage.googleapis.com/sourcegraph-assets/code-ownership-extension-0.png)
+![image](https://user-images.githubusercontent.com/68532117/138493366-07ceb88f-3b8e-4f2b-8df7-cd6f5738ef1b.png)
+
 
 ## Usage
 
@@ -38,7 +39,7 @@ This extension adds the same features on your code host if you're using the [Sou
 1. Visit any code file (on your code host) in a repository containing a `CODEOWNERS` or `.github/CODEOWNERS` file.
 1. Look in the file header to see the current file's code owner(s).
 
-![Screenshot on GitHub](https://storage.googleapis.com/sourcegraph-assets/code-ownership-extension-github-0.png)
+![Screenshot on GitHub](https://user-images.githubusercontent.com/68532117/138493194-1f3769fb-404c-4a2c-9cbb-98684b5fac44.png)
 
 ## Roadmap
 
