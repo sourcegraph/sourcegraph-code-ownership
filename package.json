@@ -3,7 +3,7 @@
   "name": "code-ownership",
   "publisher": "sourcegraph",
   "description": "See code owners of the current file",
-  "icon": "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔐</text></svg>",
+  "icon": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij4KPHRleHQgdGV4dC1hbmNob3I9InRvcCIgeT0iNDAiIGZvbnQtc2l6ZT0iMi41cmVtIj7wn5SQPC90ZXh0Pjwvc3ZnPg==",
   "license": "Apache",
   "repository": {
     "type": "git",
@@ -44,7 +44,8 @@
         ],
         "actionItem": {
           "label": "${get(context, `codeOwnership.file.${resource.uri}.label`)}",
-          "description": "${get(context, `codeOwnership.file.${resource.uri}.description`)}"
+          "description": "${get(context, `codeOwnership.file.${resource.uri}.description`)}",
+          "iconURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0OCIgaGVpZ2h0PSI0OCIgdmlld0JveD0iMCAwIDQ4IDQ4Ij4KPHRleHQgdGV4dC1hbmNob3I9InRvcCIgeT0iNDAiIGZvbnQtc2l6ZT0iMi41cmVtIj7wn5SQPC90ZXh0Pjwvc3ZnPg=="
         }
       }
     ],
