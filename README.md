@@ -2,6 +2,15 @@
 
 [![Build Status](https://travis-ci.org/sourcegraph/sourcegraph-code-ownership.svg?branch=master)](https://travis-ci.org/sourcegraph/sourcegraph-code-ownership)
 
+## ⚠️ Deprecation notice
+
+**Sourcegraph extensions have been deprecated with the September 2022 Sourcegraph
+release. [Learn more](https://docs.sourcegraph.com/extensions/deprecation).**
+
+The repo and the docs below are kept to support older Sourcegraph versions.
+
+## Description
+
 A [Sourcegraph extension](https://docs.sourcegraph.com/extensions) that shows code owners of the current file.
 
 [**🗃️ Source code**](https://github.com/sourcegraph/sourcegraph-code-ownership)
