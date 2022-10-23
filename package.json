@@ -122,7 +122,7 @@
     "@sourcegraph/prettierrc": "^3.0.3",
     "@sourcegraph/tsconfig": "^4.0.1",
     "@types/mocha": "8.2.2",
-    "@types/node": "14.17.3",
+    "@types/node": "16.18.0",
     "@types/sinon": "10.0.2",
     "eslint": "^7.28.0",
     "husky": "^4.3.6",
