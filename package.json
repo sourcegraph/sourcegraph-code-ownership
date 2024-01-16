@@ -140,7 +140,7 @@
   },
   "dependencies": {
     "ignore": "^5.1.8",
-    "rxjs": "^6.6.3",
+    "rxjs": "^6.6.7",
     "tagged-template-noop": "^2.1.1"
   }
 }
