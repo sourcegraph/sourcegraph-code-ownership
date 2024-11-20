@@ -130,7 +130,7 @@
     "mkdirp": "^1.0.4",
     "mocha": "^7.2.0",
     "nyc": "^13.3.0",
-    "parcel-bundler": "^1.12.4",
+    "parcel-bundler": "^1.12.5",
     "prettier": "^2.2.1",
     "sinon": "^9.2.2",
     "source-map-support": "^0.5.19",
