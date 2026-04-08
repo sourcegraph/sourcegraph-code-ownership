@@ -118,7 +118,7 @@
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@sourcegraph/eslint-config": "^0.20.8",
+    "@sourcegraph/eslint-config": "^0.37.1",
     "@sourcegraph/prettierrc": "^3.0.3",
     "@sourcegraph/tsconfig": "^4.0.1",
     "@types/mocha": "8.2.2",
